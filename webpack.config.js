@@ -14,6 +14,8 @@ module.exports = {
     path: path.resolve(__dirname, 'dist/'),
     publicPath: './',
     filename: '[name][contenthash].js',
+    assetModuleFilename: '[name][ext]',
+    clean: true,
   },
   mode,
   module: {
@@ -21,17 +23,30 @@ module.exports = {
       {
         test: /\.(js|jsx)?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: { presets: ['@babel/preset-env'] },
-      },
-      {
-        test: /\.(js|jsx)?$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
+        use: [
+          {
+            loader: 'babel-loader',
+            options: { presets: ['@babel/preset-env'] },
+          },
+          'eslint-loader',
+        ],
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(png|jpg|svg|jpeg|gif|webp)$/i,
+        type: 'asset/resource',
       },
     ],
   },
@@ -42,6 +57,7 @@ module.exports = {
       '@fonts': path.resolve(__dirname, 'src/fonts/'),
       '@components': path.resolve(__dirname, 'src/components/'),
       '@styles': path.resolve(__dirname, 'src/styles/'),
+      '@assets': path.resolve(__dirname, 'src/assets/'),
     },
   },
   plugins: [

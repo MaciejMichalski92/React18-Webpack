@@ -23,3 +23,5 @@ Also Webpack Bundle Analyzer at `localhost:8888`.
 ```bash
 npm run build
 ```
+
+open source project, by Maciej Michalski
