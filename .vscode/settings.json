@@ -1,0 +1,8 @@
+{
+  "eslint.codeActionsOnSave.rules": null,
+  "eslint.nodeEnv": "",
+  "prettier.endOfLine": "crlf",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.eol": "\r\n",
+  "files.insertFinalNewline": true
+}
